@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class NavBar extends StatefulWidget implements PreferredSizeWidget {
-  const NavBar({super.key});
+  final ValueChanged<String> onSearch;
+
+  const NavBar({
+    super.key,
+    required this.onSearch,
+  });
 
   @override
   State<NavBar> createState() => _NavBarState();
@@ -20,21 +25,18 @@ class _NavBarState extends State<NavBar> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Icon(Icons.shopify_rounded),
               Text("Shop App"),
             ],
           ),
-
-          SizedBox(
-            height: 8,
-          ),
-
+          const SizedBox(height: 8),
           SizedBox(
             width: double.infinity,
             child: SearchBar(
               hintText: "Search",
-              leading: Icon(Icons.search),
+              leading: const Icon(Icons.search),
+              onChanged: widget.onSearch,
             ),
           ),
         ],
